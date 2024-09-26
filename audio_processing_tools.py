@@ -2,6 +2,51 @@ import librosa
 import numpy as np
 from scipy.signal import butter, lfilter
 
+class audio_signal:
+    """
+    A class representing audio in the form of a NumPy array.
+
+    Attributes:
+        self.signal = Signal as a NumPy array
+        self.sr = Sample rate
+    """
+    def __init__(self, signal, sr):
+        self.signal = signal
+        self.sr = sr
+    
+    def getSampleRate(self):
+        """
+        Returns sample rate of the signal
+
+        Return:
+        sr: Sample Rate
+        """
+        return self.sr
+
+    def resample(self, sr):
+        """
+        Resamples the signal with a target sample rate.
+        
+        Parameters:
+        sr: Target sample rate
+        """
+        self.signal = librosa.resample(self.signal, orig_sr=self.sr, target_sr=sr)
+        self.sr = sr
+
+    def npArrayToStft(self, n_fft, hop_length):
+        """
+        Resamples the signal with a target sample rate.
+        
+        Parameters:
+        n_fft: Number of Fast Fourier Transform points
+        hop_length: Number of audio signals between frames
+
+        Return:
+        stft: Short-Time Fourier Transform
+        """
+        stft = librosa.stft(self.signal, n_fft=n_fft, hop_length=hop_length)
+        return stft
+
 # Adaptive Wiener filter for noise suppression
 def adaptive_wiener_filter(noisy_stft, alpha=0.90, noise_overestimate_factor=2.0, eps=1e-8):
     """

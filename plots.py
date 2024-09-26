@@ -7,7 +7,19 @@ import numpy as np
 logging.basicConfig(level=logging.INFO)
 
 
-def dB_this(audio, title):
+def dB_plot(audio, title):
+    """
+    Plots a db-time plot with pydub audio segment
+
+    Parameters:
+    lowcut (float): Lower cutoff frequency for the bandpass filter.
+    highcut (float): Upper cutoff frequency for the bandpass filter.
+    sr (int): The sampling rate of the audio signal.
+    order (int): The order of the filter, higher values make the filter steeper.
+
+    Returns:
+    b, a: Filter coefficients for the bandpass filter.
+    """
     segment_length_ms = 100
     num_segments = len(audio) // segment_length_ms
 
