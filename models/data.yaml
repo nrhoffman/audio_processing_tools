@@ -1,0 +1,3 @@
+test: E:\Data\noise_filter\dataset\test
+train: E:\Data\noise_filter\dataset\train
+val: E:\Data\noise_filter\dataset\val

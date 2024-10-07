@@ -1,7 +1,7 @@
 import logging
 
 def logger(log_name, log_file, file_level=logging.WARNING, console_level=logging.INFO):
-    logger = logging.getLogger()
+    logger = logging.getLogger(log_name)
 
     if not logger.hasHandlers():
         logger.setLevel(logging.DEBUG)
